@@ -364,7 +364,15 @@ auto_accept: <%= @master_auto_accept %>
 #   prod:
 #     - /srv/salt/prod/services
 #     - /srv/salt/prod/states
-
+file_roots:
+<%- @master_file_roots.sort.each do |file_roots, root_paths| -%>
+  <%= file_roots %>:<%= "\n" -%>
+<%- root_paths.sort.each do |env| -%>
+    - <%= env %><%= "\n" -%>
+<%- end -%>
+<%- end -%>
+<%- end -%>
+  
 #file_roots:
 #  base:
 #    - /srv/salt
