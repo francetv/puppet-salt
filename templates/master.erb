@@ -364,6 +364,7 @@ auto_accept: <%= @master_auto_accept %>
 #   prod:
 #     - /srv/salt/prod/services
 #     - /srv/salt/prod/states
+<% if @master_file_roots -%>
 file_roots:
 <%- @master_file_roots.sort.each do |file_roots, root_paths| -%>
   <%= file_roots %>:<%= "\n" -%>
@@ -372,10 +373,11 @@ file_roots:
 <%- end -%>
 <%- end -%>
 <%- end -%>
-  
+<% else -%>
 #file_roots:
 #  base:
 #    - /srv/salt
+<%- end -%>
 
 # The hash_type is the hash to use when discovering the hash of a file on
 # the master server. The default is md5, but sha1, sha224, sha256, sha384
