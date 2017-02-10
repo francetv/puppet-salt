@@ -372,12 +372,11 @@ file_roots:
     - <%= env %><%= "\n" -%>
 <%- end -%>
 <%- end -%>
-<%- end -%>
-<%- else -%>
+<% else -%>
 #file_roots:
 #  base:
 #    - /srv/salt
-<%- end -%>
+<% end -%>
 
 # The hash_type is the hash to use when discovering the hash of a file on
 # the master server. The default is md5, but sha1, sha224, sha256, sha384
