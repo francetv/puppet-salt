@@ -420,9 +420,16 @@ file_roots:
 #
 # To use multiple backends list them in the order they are searched:
 #
+<% if @master_file_backends -%>
+fileserver_backend:
+<%- @master_file_backends.sort.each do |backend| -%>
+    - <%= remote %><%= "\n" -%>
+<%- end -%>
+<% else -%>
 #fileserver_backend:
 #  - git
 #  - roots
+<% end -%>
 #
 # Uncomment the line below if you do not want the file_server to follow
 # symlinks when walking the filesystem tree. This is set to True
