@@ -455,9 +455,9 @@ file_roots:
 # When using the git fileserver backend at least one git remote needs to be
 # defined. The user running the salt master will need read access to the repo.
 #
-<% if @gitfs_remotes -%>
+<% if @master_gitfs_remotes -%>
 gitfs_remotes:
-<%- @gitfs_remotes.sort.each do |remote| -%>
+<%- @master_gitfs_remotes.sort.each do |remote| -%>
     - <%= remote %><%= "\n" -%>
 <%- end -%>
 <% else -%>
@@ -495,10 +495,20 @@ gitfs_remotes:
 # a top file and sls files. However, pillar data does not need to be in the
 # highstate format, and is generally just key/value pairs.
 
+<% if @master_pillars_roots -%>
+pillar_roots:
+<%- @master_pillars_roots.sort.each do |file_roots, root_paths| -%>
+  <%= file_roots %>:<%= "\n" -%>
+<%- root_paths.sort.each do |env| -%>
+    - <%= env %><%= "\n" -%>
+<%- end -%>
+<%- end -%>
+<% else -%>
 #pillar_roots:
 #  base:
 #    - /srv/pillar
-
+<% end -%>
+  
 #ext_pillar:
 #  - hiera: /etc/hiera.yaml
 #  - cmd_yaml: cat /etc/salt/yaml
