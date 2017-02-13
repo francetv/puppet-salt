@@ -121,6 +121,7 @@ class salt (
   $minion_conf_template            = $salt::defaults::minion_conf_template,
   $master_interface                = undef,
   $master_file_roots               = undef,
+  $master_file_backends            = undef,
   $master_pillars_roots            = undef,
   $master_gitfs_remotes            = undef,
   $master_publish_port             = undef,
