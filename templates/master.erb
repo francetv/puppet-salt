@@ -455,9 +455,17 @@ file_roots:
 # When using the git fileserver backend at least one git remote needs to be
 # defined. The user running the salt master will need read access to the repo.
 #
+<% if @gitfs_remotes -%>
+gitfs_remotes:
+<%- @gitfs_remotes.sort.each do |remote| -%>
+    - <%= remote %><%= "\n" -%>
+<%- end -%>
+<% else -%>
 #gitfs_remotes:
 #  - git://github.com/saltstack/salt-states.git
 #  - file:///var/git/saltmaster
+<% end -%>
+
 #
 # The gitfs_ssl_verify option specifies whether to ignore ssl certificate
 # errors when contacting the gitfs backend. You might want to set this to
