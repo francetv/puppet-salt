@@ -423,7 +423,7 @@ file_roots:
 <% if @master_file_backends -%>
 fileserver_backend:
 <%- @master_file_backends.sort.each do |backend| -%>
-    - <%= remote %><%= "\n" -%>
+    - <%= backend %><%= "\n" -%>
 <%- end -%>
 <% else -%>
 #fileserver_backend:
