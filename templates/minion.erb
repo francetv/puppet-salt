@@ -9,7 +9,16 @@
 # Set the location of the salt master server, if the master server cannot be
 # resolved, then the minion will fail to start.
 <% if @minion_master -%>
+  <% if @minion_master.class == 'Array' -%>
+master:
+<%- minion_master.sort.each do |master| -%>
+    - <%= master %><%= "\n" -%>
+<%- end -%>
+master_type: failover
+master_shuffle: True
+  <% else -%>
 master: <%= @minion_master %>
+  <% end -%>
 <% else -%>
 #master: salt
 <% end -%>
@@ -27,6 +36,18 @@ master: <%= @minion_master %>
 master_port: <%= @minion_master_port %>
 <% else -%>
 #master_port: 4506
+<% end -%>
+
+<% if @minion_always_verify_signature -%>
+always_verify_signature: <%= @minion_always_verify_signature %>
+<% else -%>
+#always_verify_signature: False
+<% end -%>
+
+<% if @minion_verify_master_pubkey_sign -%>
+verify_master_pubkey_sign: <%= @minion_verify_master_pubkey_sign %>
+<% else -%>
+#verify_master_pubkey_sign: False
 <% end -%>
 
 # The user to run salt
