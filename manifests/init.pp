@@ -140,6 +140,8 @@ class salt (
   $master_sock_dir                 = undef,
   $master_nodegroups               = undef,
   $minion_master                   = undef,
+  $minion_always_verify_signature  = undef,
+  $minion_verify_master_pubkey_sign= undef,
   $minion_master_port              = undef,
   $minion_user                     = undef,
   $minion_pidfile                  = undef,
