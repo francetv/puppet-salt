@@ -342,7 +342,7 @@ auto_accept: <%= @master_auto_accept %>
 # the output will be shortened to a single line.  If set to 'mixed', the output
 # will be terse unless a state failed, in which case that output will be full.
 #state_output: full
-
+state_output: mixed
 
 #####      File Server settings      #####
 ##########################################
@@ -688,6 +688,12 @@ nodegroups:
 #
 #range_server: range:80
 
+cli_summary: True
+con_cache: True
+master_sign_pubkey: true
+<%- if @hostname -%>
+master_sign_key_name: <%= @hostname %>
+<%- end -%>
 
 #####     Windows Software Repo settings #####
 ##############################################
