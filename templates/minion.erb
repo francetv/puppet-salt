@@ -12,6 +12,7 @@
 master_type: failover
 master_shuffle: True
 master: <%= @minion_master %>
+retry_dns: 0
 <% else -%>
 #master: salt
 <% end -%>
